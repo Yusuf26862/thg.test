@@ -26,11 +26,11 @@ header p {
 }
 
 #reader {
-    width: 100%;
+    width: 50%;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    background: #000;
+    background: #ffffff;
 }
 
 #result-container {
