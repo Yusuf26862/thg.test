@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Barcode Scanner</title>
-    
-    <link rel="stylesheet" href="index_style.css">
-    <script src="index_script.js"></script>
+    <title>HD Web Barcode Scanner</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Scan a Barcode</h2>
-        <div id="reader"></div>
-        <div id="result">Result will appear here</div>
+    <div class="app-container">
+        <header>
+            <h1>Barcode Scanner</h1>
+            <p>Center the barcode in the box below</p>
+        </header>
+
+        <main>
+            <div id="reader"></div>
+            <div id="result-container">
+                <span class="label">Result:</span>
+                <div id="result">Waiting for scan...</div>
+            </div>
+        </main>
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>
