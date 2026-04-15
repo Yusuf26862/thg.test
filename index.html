@@ -4,40 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Barcode Scanner</title>
+    
+    <link rel="stylesheet" href="index_style.css">
+    
     <script src="https://unpkg.com/html5-qrcode"></script>
-    <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
-        #reader { width: 400px; border: 2px solid #333; border-radius: 8px; overflow: hidden; }
-        #result { margin-top: 20px; font-size: 1.2rem; font-weight: bold; color: #2c3e50; }
-    </style>
 </head>
 <body>
 
-    <h2>Scan a Barcode</h2>
-    <div id="reader"></div>
-    <div id="result">Result will appear here</div>
+    <div class="container">
+        <h2>Scan a Barcode</h2>
+        <div id="reader"></div>
+        <div id="result">Result will appear here</div>
+    </div>
 
-    <script>
-        function onScanSuccess(decodedText, decodedResult) {
-            // Display the result on the page
-            document.getElementById('result').innerText = `Scanned: ${decodedText}`;
-            console.log(`Code matched = ${decodedText}`, decodedResult);
-            
-            // Optional: Stop scanning after a success
-            // html5QrcodeScanner.clear();
-        }
-
-        function onScanFailure(error) {
-            // Errors are common (e.g., if a frame doesn't have a barcode)
-            // We usually don't want to spam the console here.
-        }
-
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader", 
-            { fps: 10, qrbox: {width: 250, height: 150} }, 
-            /* verbose= */ false
-        );
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
