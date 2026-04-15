@@ -1,48 +1,40 @@
 /**
- * Global function to handle successful scans
+ * Configuration for the scanner
+ */
+const config = {
+    fps: 20,
+    qrbox: { width: 280, height: 180 },
+    aspectRatio: 1.0,
+    videoConstraints: {
+        facingMode: "environment",
+        width: { min: 640, ideal: 1280, max: 1920 },
+        height: { min: 480, ideal: 720, max: 1080 }
+    }
+};
+
+/**
+ * Handle successful scans
  */
 function onScanSuccess(decodedText, decodedResult) {
-    const resultElement = document.getElementById('result');
+    const resultDisplay = document.getElementById('result');
+    resultDisplay.innerText = decodedText;
     
-    // Add a little 'success' flash effect
-    resultElement.style.background = "#d4edda";
-    resultElement.innerText = `Scanned: ${decodedText}`;
-    
-    // Reset background after 1 second
+    // Add a visual "pop" effect
+    resultDisplay.style.color = "#28a745";
     setTimeout(() => {
-        resultElement.style.background = "#e8f0fe";
-    }, 1000);
+        resultDisplay.style.color = "#007bff";
+    }, 1500);
 
-    console.log(`Scan Result: ${decodedText}`, decodedResult);
+    console.log(`Scan success: ${decodedText}`);
 }
 
 /**
- * Global function to handle scan failures
+ * Handle scan failures
  */
 function onScanFailure(error) {
-    // We leave this empty to avoid filling the console with "No code found" errors
+    // Silently ignore to keep the console clean
 }
 
-/**
- * Scanner Configuration
- * This version forces HD resolution and the rear camera
- */
-let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", 
-    { 
-        fps: 20, 
-        qrbox: { width: 280, height: 180 }, // Slightly larger for barcodes
-        aspectRatio: 1.0,
-        videoConstraints: {
-            // "environment" tells the phone to use the rear-facing camera
-            facingMode: "environment",
-            // Requesting HD resolution for better focus on small barcodes
-            width: { min: 640, ideal: 1280, max: 1920 },
-            height: { min: 480, ideal: 720, max: 1080 }
-        }
-    }, 
-    false
-);
-
-// Render the scanner
+// Start the scanner
+const html5QrcodeScanner = new Html5QrcodeScanner("reader", config, false);
 html5QrcodeScanner.render(onScanSuccess, onScanFailure);
